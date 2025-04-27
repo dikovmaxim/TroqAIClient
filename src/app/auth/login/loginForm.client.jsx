@@ -30,8 +30,13 @@ export function LoginForm() {
                 const { error } = await response.json();
                 setError(error || "Login failed");
             } else {
-                const { token } = await response.json();
-                console.log("Token:", token);
+                const rsp = await response.json();
+                if (rsp.error) {
+                    setError(rsp.error);
+                } else {
+                    //redirect to the home page
+                    window.location.href = "/";
+                }
             }
         } catch (error) {
             setError("Something went wrong");
@@ -62,6 +67,8 @@ export function LoginForm() {
             <button type="submit" className="bg-blue-500 text-white p-2 rounded">
                 Login
             </button>
+            {loading && <p className="text-gray-500">Loading...</p>}
+            {error && <p className="text-red-500">{error}</p>}
         </form>
     );
 }
