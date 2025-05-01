@@ -1,4 +1,5 @@
 import { GetUserInfo, LoggedIn } from "@/utils/Api";
+import { redirect } from "next/navigation";
 
 export async function Header(){
 
@@ -6,7 +7,10 @@ export async function Header(){
 
     try{
         var userInfro = await GetUserInfo();
-    }catch(e){}
+        var loggedIn = await LoggedIn();
+    }catch(e){
+        
+    }
 
     return(
         <nav className="flex items-center justify-between p-4">
@@ -15,7 +19,7 @@ export async function Header(){
                 TroqAi
             </a>
             </div>
-            {(await LoggedIn() ) ?  (
+            {(loggedIn && userInfro) ? (
             <div className="flex items-center">
                 <span className="mr-4">{userInfro.name}</span>
                 <a href="/auth/logout" className="text-blue-500 hover:underline">
