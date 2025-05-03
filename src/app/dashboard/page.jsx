@@ -11,7 +11,7 @@ export default async function DashboardPage() {
   console.log("Projects: ", projects);
 
   return (
-    <div className="flex flex-col h-full mx-auto p-4">
+    <div className="flex flex-col h-full p-4 w-full">
       <h2 className="text-2xl font-bold mb-4">My Projects</h2>
       <hr/>
       {projects.length > 0 ? (

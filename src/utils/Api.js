@@ -120,9 +120,9 @@ export async function UploadFiles(id, files) {
     const data = {
         id: id,
     };
-
+    
     let result = await PostRequest("/projects/addFile", data, true, files);
-    //if (result.error) throw new Error(result.error);
+    if (result.error) throw new Error(result.error);
     return result;
 }
 

@@ -9,6 +9,8 @@ export async function POST(request) {
         // "files" field should be sent as array input (multiple files)
         const files = formData.getAll('files');
 
+        console.log(files.length);
+
         if (!uid || files.length === 0) {
             return NextResponse.json(
                 { error: 'Project uid and at least one file are required' },
